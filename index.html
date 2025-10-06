@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жилища мира - Индивидуальный проект</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            background: #34495e;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        .intro {
+            background: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .intro h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+        }
+
+        .dwellings {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .dwelling-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 20px;
+        }
+
+        .dwelling-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .dwelling-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .dwelling-image {
+            width: 100%;
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .dwelling-content {
+            padding: 1.5rem;
+        }
+
+        .dwelling-content h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .dwelling-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            background: #ecf0f1;
+            padding: 3rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .share-section {
+            background: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .share-link {
+            background: #3498db;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        .share-link:hover {
+            background: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <h1>Жилища мира</h1>
+            <p>Исследуйте разнообразие жилищ разных народов и культур</p>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav>
+        <ul>
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#dwellings">Типы жилищ</a></li>
+            <li><a href="#features">Особенности</a></li>
+            <li><a href="#about">О проекте</a></li>
+        </ul>
+    </nav>
+
+    <!-- Основное содержание -->
+    <main>
+        <!-- Введение -->
+        <section id="home" class="intro">
+            <div class="container">
+                <h2>Добро пожаловать в мир жилищ!</h2>
+                <p>Этот проект посвящен изучению различных типов жилищ, которые существуют в разных уголках нашей планеты. От традиционных домов до современных архитектурных решений - мы исследуем, как люди создают свои дома по всему миру.</p>
+            </div>
+        </section>
+
+        <!-- Раздел "Поделиться сайтом" -->
+        <section class="share-section">
+            <div class="container">
+                <h2>Поделиться сайтом с друзьями</h2>
+                <p>Отправьте эту ссылку, чтобы другие могли посмотреть проект:</p>
+                <a href="#" class="share-link" id="shareLink">Копировать ссылку</a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                    Скопируйте ссылку выше и отправьте друзьям через сообщения или социальные сети
+                </p>
+            </div>
+        </section>
+
+        <!-- Типы жилищ -->
+        <section id="dwellings" class="dwellings">
+            <h2 class="section-title">Типы жилищ</h2>
+            <div class="dwelling-grid">
+                <!-- Карточка 1 -->
+                <div class="dwelling-card">
+                    <div class="dwelling-image" style="background-color: #e74c3c;">
+                        [Фото: Иглу]
+                    </div>
+                    <div class="dwelling-content">
+                        <h3>Иглу</h3>
+                        <p>Традиционные жилища эскимосов, построенные из снежных блоков. Иглу обеспечивают отличную теплоизоляцию в условиях крайнего севера.</p>
+                        <p><strong>Регион:</strong> Арктика</p>
+                        <p><strong>Материалы:</strong> Снег, лед</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 2 -->
+                <div class="dwelling-card">
+                    <div class="dwelling-image" style="background-color: #27ae60;">
+                        [Фото: Юрта]
+                    </div>
+                    <div class="dwelling-content">
+                        <h3>Юрта</h3>
+                        <p>Переносное жилище кочевых народов Центральной Азии. Быстро собирается и разбирается, идеально подходит для кочевого образа жизни.</p>
+                        <p><strong>Регион:</strong> Центральная Азия</p>
+                        <p><strong>Материалы:</strong> Дерево, войлок</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 3 -->
+                <div class="dwelling-card">
+                    <div class="dwelling-image" style="background-color: #f39c12;">
+                        [Фото: Хижина]
+                    </div>
+                    <div class="dwelling-content">
+                        <h3>Хижина</h3>
+                        <p>Традиционные жилища в тропических регионах, построенные из местных природных материалов. Обеспечивают прохладу в жарком климате.</p>
+                        <p><strong>Регион:</strong> Тропики</p>
+                        <p><strong>Материалы:</strong> Бамбук, листья, глина</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 4 -->
+                <div class="dwelling-card">
+                    <div class="dwelling-image" style="background-color: #8e44ad;">
+                        [Фото: Саманный дом]
+                    </div>
+                    <div class="dwelling-content">
+                        <h3>Саманный дом</h3>
+                        <p>Дома из самана (смесь глины, песка и соломы) распространены в засушливых регионах. Обладают excellent thermal mass.</p>
+                        <p><strong>Регион:</strong> Ближний Восток, Африка</p>
+                        <p><strong>Материалы:</strong> Глина, песок, солома</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 5 -->
+                <div class="dwelling-card">
+                    <div class="dwelling-image" style="background-color: #16a085;">
+                        [Фото: Рубленый дом]
+                    </div>
+                    <div class="dwelling-content">
+                        <h3>Рубленый дом</h3>
+                        <p>Традиционные деревянные дома в лесных регионах. Отличаются прочностью и excellent теплоизоляционными свойствами.</p>
+                        <p><strong>Регион:</strong> Северная Европа, Россия</p>
+                        <p><strong>Материалы:</strong> Дерево (бревна)</p>
+                    </div>
+                </div>
+
+                <!-- Карточка 6 -->
+                <div class="dwelling-card">
+                    <div class="dwelling-image" style="background-color: #c0392b;">
+                        [Фото: Плавучий дом]
+                    </div>
+                    <div class="dwelling-content">
+                        <h3>Плавучий дом</h3>
+                        <p>Дома, построенные на воде, распространены в регионах с обильными водными ресурсами или частыми наводнениями.</p>
+                        <p><strong>Регион:</strong> Юго-Восточная Азия</p>
+                        <p><strong>Материалы:</strong> Дерево, бамбук</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Особенности -->
+        <section id="features" class="features">
+            <h2 class="section-title">Особенности традиционных жилищ</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Адаптация к климату</h3>
+                    <p>Каждое жилище идеально приспособлено к местным климатическим условиям</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Локальные материалы</h3>
+                    <p>Использование доступных природных материалов региона</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Культурные традиции</h3>
+                    <p>Отражение культурных особенностей и образа жизни народов</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Экологичность</h3>
+                    <p>Естественная вентиляция и температурный режим</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>Индивидуальный проект "Жилища мира"</p>
+            <p>© 2025 Протатип</p>
+        </div>
+    </footer>
+
+    <script>
+        // Функция для копирования ссылки
+        document.getElementById('shareLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Получаем текущий URL страницы
+            const currentUrl = window.location.href;
+            
+            // Пытаемся скопировать в буфер обмена
+            navigator.clipboard.writeText(currentUrl).then(function() {
+                // Успешно скопировано
+                const originalText = e.target.textContent;
+                e.target.textContent = 'Ссылка скопирована!';
+                e.target.style.background = '#27ae60';
+                
+                // Возвращаем исходный текст через 2 секунды
+                setTimeout(function() {
+                    e.target.textContent = originalText;
+                    e.target.style.background = '#3498db';
+                }, 2000);
+            }).catch(function() {
+                // Если не удалось скопировать, показываем ссылку
+                alert('Скопируйте эту ссылку: ' + currentUrl);
+            });
+        });
+
+        // Показываем актуальную ссылку при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const shareLink = document.getElementById('shareLink');
+            shareLink.textContent = window.location.href;
+        });
+    </script>
+</body>
+</html>
