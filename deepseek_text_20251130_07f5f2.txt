@@ -1,0 +1,20 @@
+zhilisha-mira/
+├── 📄 index.html
+├── 📄 dwellings.html
+├── 📄 north.html
+├── 📄 asia.html
+├── 📄 climate.html
+├── 📄 materials.html
+├── 📄 gallery.html
+├── 📄 dictionary.html
+├── 📄 about.html
+├── 📄 style.css
+├── 📄 script.js
+└── 📁 images/
+    ├── 🖼️ izba.jpg
+    ├── 🖼️ chum.jpg
+    ├── 🖼️ yaranga.jpg
+    ├── 🖼️ iglu.jpg
+    ├── 🖼️ yurta.jpg
+    ├── 🖼️ vigvam.jpg
+    └── 🖼️ ... (другие фото)

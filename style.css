@@ -1,0 +1,1060 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --text-color: #333;
+    --text-light: #666;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Navigation */
+nav {
+    background: var(--primary-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+nav a:hover, nav a.active {
+    background-color: var(--secondary-color);
+}
+
+/* Main content */
+main {
+    padding: 2rem 0;
+    min-height: 60vh;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.hero h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+/* Features grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Quick links */
+.quick-links {
+    margin: 3rem 0;
+}
+
+.quick-links h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.quick-link {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    display: block;
+}
+
+.quick-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.quick-link h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.quick-link p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    background: var(--light-color);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+.breadcrumbs a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+/* Cards grid */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Стили для карточек с цветными фонами и иконками */
+.card-image {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    position: relative;
+}
+
+/* Убираем плейсхолдеры */
+.image-placeholder {
+    display: none;
+}
+
+/* Цветные карточки с иконками для каждого типа жилища */
+.card[data-image="izba"] .card-image {
+    background: linear-gradient(135deg, #8e44ad, #9b59b6);
+}
+
+.card[data-image="chum"] .card-image {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+.card[data-image="yaranga"] .card-image {
+    background: linear-gradient(135deg, #f39c12, #f1c40f);
+}
+
+.card[data-image="iglu"] .card-image {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.card[data-image="yurta"] .card-image {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.card[data-image="minka"] .card-image {
+    background: linear-gradient(135deg, #1abc9c, #16a085);
+}
+
+.card[data-image="hanok"] .card-image {
+    background: linear-gradient(135deg, #d35400, #e67e22);
+}
+
+.card[data-image="vigvam"] .card-image {
+    background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+}
+
+.card[data-image="balok"] .card-image {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.card[data-image="yaodun"] .card-image {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+}
+
+.card-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.card p {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background: var(--primary-color);
+}
+
+.btn-small {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+/* Filter system */
+.filters {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.filter-group {
+    margin-bottom: 1rem;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.filter-select {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Gallery */
+.gallery-section {
+    margin: 2rem 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    font-size: 2rem;
+}
+
+.gallery-caption {
+    padding: 1rem;
+}
+
+.gallery-caption h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Dictionary */
+.term-list {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.term-item {
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.term-item:last-child {
+    border-bottom: none;
+}
+
+.term-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.term-item .term-definition {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.term-item .term-example {
+    color: var(--text-light);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Image upload section */
+.upload-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.upload-area {
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: var(--secondary-color);
+}
+
+.upload-area.dragover {
+    border-color: var(--secondary-color);
+    background: var(--light-color);
+}
+
+.upload-btn {
+    background: var(--success-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.upload-btn:hover {
+    background: #219a52;
+}
+
+.upload-preview {
+    display: none;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.preview-image {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+}
+
+/* Climate zones */
+.climate-zones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.climate-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.climate-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--light-color);
+}
+
+.climate-card ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.climate-card li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+/* Materials grid */
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.material-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.material-card:hover {
+    transform: translateY(-5px);
+}
+
+.material-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.material-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    background: var(--dark-color);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+/* No results message */
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.no-results p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+/* Modal for image viewing */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    max-height: 80%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.modal-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--accent-color);
+}
+
+/* Search box */
+.search-box {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.search-input {
+    padding: 0.75rem 1rem;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: box-shadow 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--secondary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav a {
+        padding: 0.75rem 1rem;
+        text-align: center;
+    }
+    
+    .features-grid,
+    .links-grid,
+    .cards-grid,
+    .gallery-grid,
+    .climate-zones,
+    .materials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+    
+    .card-image {
+        height: 150px;
+        font-size: 2rem;
+    }
+    
+    .filters div {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .filter-select {
+        max-width: 100%;
+    }
+}
+
+/* Utility classes */
+.text-center {
+    text-align: center;
+}
+
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+
+.hidden {
+    display: none !important;
+}
+
+/* Success messages */
+.success-message {
+    background: var(--success-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+/* Image grid for multiple photos */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.grid-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+}
+
+.grid-image:hover {
+    transform: scale(1.05);
+}
+
+/* Loading states */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Card states */
+.card.loading {
+    opacity: 0.7;
+}
+
+.card.error {
+    border: 2px solid var(--accent-color);
+}
+
+/* Ensure cards are visible */
+.card {
+    opacity: 1 !important;
+    display: block !important;
+}
+/* Стили для карточек с локальными изображениями */
+.card[data-image="izba"] .card-image {
+    background-image: url('images/izba.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="chum"] .card-image {
+    background-image: url('images/chum.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="yaranga"] .card-image {
+    background-image: url('images/yaranga.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="iglu"] .card-image {
+    background-image: url('images/iglu.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="yurta"] .card-image {
+    background-image: url('images/yurta.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="minka"] .card-image {
+    background-image: url('images/minka.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="hanok"] .card-image {
+    background-image: url('images/hanok.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="vigvam"] .card-image {
+    background-image: url('images/vigvam.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="balok"] .card-image {
+    background-image: url('images/balok.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="yaodun"] .card-image {
+    background-image: url('images/yaodun.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Фолбэк если локальное изображение не загрузилось */
+.card-image {
+    background-color: #ecf0f1; /* Фон по умолчанию */
+    position: relative;
+}
+
+/* Показываем иконку если изображение не загружено */
+.card-image::before {
+    content: '🏠';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+/* Скрываем иконку когда изображение загружено */
+.card-image.image-loaded::before {
+    display: none;
+}
+
+/* Затемнение для текста поверх изображения */
+.card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    z-index: 2;
+}
+
+.card-title {
+    position: relative;
+    z-index: 3;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+/* Индикатор загрузки */
+.loading-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    z-index: 4;
+}
+/* Стили для работающих фильтров */
+.filters {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.filters h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.filter-group {
+    margin-bottom: 1rem;
+    display: inline-block;
+    margin-right: 2rem;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.filter-select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    min-width: 200px;
+    background: white;
+    cursor: pointer;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Стили для карточек с локальными изображениями */
+.card[data-image="izba"] .card-image {
+    background-image: url('images/izba.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="chum"] .card-image {
+    background-image: url('images/chum.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="yaranga"] .card-image {
+    background-image: url('images/yaranga.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="iglu"] .card-image {
+    background-image: url('images/iglu.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="yurta"] .card-image {
+    background-image: url('images/yurta.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="minka"] .card-image {
+    background-image: url('images/minka.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="hanok"] .card-image {
+    background-image: url('images/hanok.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="vigvam"] .card-image {
+    background-image: url('images/vigvam.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="balok"] .card-image {
+    background-image: url('images/balok.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card[data-image="yaodun"] .card-image {
+    background-image: url('images/yaodun.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Фолбэк если локальное изображение не загрузилось */
+.card-image {
+    background-color: #ecf0f1;
+    position: relative;
+}
+
+.card-image::before {
+    content: '🏠';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.card-image.image-loaded::before {
+    display: none;
+}
+
+.card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    z-index: 2;
+}
+
+.card-title {
+    position: relative;
+    z-index: 3;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+/* Сообщение "ничего не найдено" */
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: none;
+    grid-column: 1 / -1;
+}
+
+.no-results.show {
+    display: block;
+}
+
+.no-results p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Анимация появления карточек */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card.hidden {
+    display: none !important;
+}
+
+/* Кнопка сброса фильтров */
+.reset-filters {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+    transition: background-color 0.3s;
+}
+
+.reset-filters:hover {
+    background: #c0392b;
+}

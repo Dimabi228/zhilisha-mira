@@ -3,669 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Жилища мира - Интерактивный проект</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        nav {
-            background: #34495e;
-            padding: 1rem 0;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #3498db;
-        }
-
-        .intro {
-            background: white;
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .intro h2 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            font-size: 2rem;
-        }
-
-        .intro p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto;
-            color: #666;
-        }
-
-        .dwellings {
-            padding: 3rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-
-        .dwelling-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 0 20px;
-        }
-
-        .dwelling-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .dwelling-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .dwelling-image {
-            width: 100%;
-            height: 200px;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-weight: bold;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .dwelling-content {
-            padding: 1.5rem;
-        }
-
-        .dwelling-content h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .dwelling-content p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        /* Модальное окно */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 2% auto;
-            padding: 2rem;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            position: relative;
-        }
-
-        .close {
-            position: absolute;
-            right: 1rem;
-            top: 1rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .close:hover {
-            color: #e74c3c;
-        }
-
-        .modal-header {
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-header h2 {
-            color: #2c3e50;
-            font-size: 2rem;
-        }
-
-        .modal-body {
-            line-height: 1.8;
-        }
-
-        .dwelling-features {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-
-        .dwelling-features h4 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        .features {
-            background: #ecf0f1;
-            padding: 3rem 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 0 20px;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .feature-card h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .share-section {
-            background: white;
-            padding: 2rem 0;
-            text-align: center;
-            margin: 2rem 0;
-        }
-
-        .share-link {
-            background: #3498db;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin: 1rem 0;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .share-link:hover {
-            background: #2980b9;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 5px 0;
-            }
-            
-            .modal-content {
-                margin: 5% auto;
-                width: 95%;
-                padding: 1rem;
-            }
-        }
-    </style>
+    <title>Жилища мира - Главная</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Шапка сайта -->
     <header>
         <div class="container">
             <h1>Жилища мира</h1>
-            <p>Исследуйте разнообразие жилищ разных народов и культур</p>
+            <p>Исследуйте архитектурное разнообразие традиционных жилищ народов мира</p>
         </div>
     </header>
 
-    <!-- Навигация -->
     <nav>
-        <ul>
-            <li><a href="#home">Главная</a></li>
-            <li><a href="#dwellings">Типы жилищ</a></li>
-            <li><a href="#features">Особенности</a></li>
-        </ul>
+        <div class="container">
+            <ul>
+                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="dwellings.html">Традиционные жилища</a></li>
+                <li><a href="climate.html">Климат и архитектура</a></li>
+                <li><a href="materials.html">Конструкции и материалы</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="dictionary.html">Словарь терминов</a></li>
+                <li><a href="about.html">О проекте</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- Основное содержание -->
-    <main>
-        <!-- Введение -->
-        <section id="home" class="intro">
-            <div class="container">
-                <h2>Добро пожаловать в мир жилищ!</h2>
-                <p>Этот интерактивный проект посвящен изучению различных типов жилищ, которые существуют в разных уголках нашей планеты. Кликайте на карточки для получения подробной информации.</p>
+    <main class="container">
+        <section class="hero">
+            <h2>Добро пожаловать в мир традиционной архитектуры</h2>
+            <p>Этот образовательный проект посвящен изучению разнообразия жилищ разных народов мира, их конструктивных особенностей и культурного значения.</p>
+        </section>
+
+        <section class="features-grid">
+            <div class="feature-card">
+                <h3>📚 Образовательный ресурс</h3>
+                <p>Полная информация о традиционных жилищах для студентов и школьников</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌍 Глобальный охват</h3>
+                <p>Жилища всех континентов и климатических зон</p>
+            </div>
+            <div class="feature-card">
+                <h3>🛠 Конструкции</h3>
+                <p>Подробное описание строительных материалов и технологий</p>
+            </div>
+            <div class="feature-card">
+                <h3>📱 Адаптивный дизайн</h3>
+                <p>Удобный просмотр на любых устройствах</p>
             </div>
         </section>
 
-        <!-- Раздел "Поделиться сайтом" -->
-        <section class="share-section">
-            <div class="container">
-                <h2>Поделиться сайтом с друзьями</h2>
-                <p>Отправьте эту ссылку, чтобы другие могли посмотреть проект:</p>
-                <a href="#" class="share-link" id="shareLink">Копировать ссылку</a>
-            </div>
-        </section>
-
-        <!-- Типы жилищ -->
-        <section id="dwellings" class="dwellings">
-            <h2 class="section-title">Типы жилищ</h2>
-            <div class="dwelling-grid">
-                <!-- Русская изба -->
-                <div class="dwelling-card" onclick="openModal('izba')">
-                    <div class="dwelling-image" style="background-color: #8e44ad;">
-                        [Фото: Русская изба]
-                    </div>
-                    <div class="dwelling-content">
-                        <h3>Русская изба</h3>
-                        <p>Традиционное деревянное жилище русских крестьян</p>
-                        <p><strong>Регион:</strong> Россия</p>
-                        <p><strong>Материалы:</strong> Дерево (сосна, ель)</p>
-                    </div>
-                </div>
-
-                <!-- Иглу -->
-                <div class="dwelling-card" onclick="openModal('iglu')">
-                    <div class="dwelling-image" style="background-color: #3498db;">
-                        [Фото: Иглу]
-                    </div>
-                    <div class="dwelling-content">
-                        <h3>Иглу</h3>
-                        <p>Зимнее жилище эскимосов из снежных блоков</p>
-                        <p><strong>Регион:</strong> Арктика, Канада, Гренландия</p>
-                        <p><strong>Материалы:</strong> Снег, лед</p>
-                    </div>
-                </div>
-
-                <!-- Юрта -->
-                <div class="dwelling-card" onclick="openModal('yurta')">
-                    <div class="dwelling-image" style="background-color: #e74c3c;">
-                        [Фото: Юрта]
-                    </div>
-                    <div class="dwelling-content">
-                        <h3>Юрта</h3>
-                        <p>Переносное жилище кочевых народов</p>
-                        <p><strong>Регион:</strong> Центральная Азия, Монголия</p>
-                        <p><strong>Материалы:</strong> Дерево, войлок</p>
-                    </div>
-                </div>
-
-                <!-- Яранга -->
-                <div class="dwelling-card" onclick="openModal('yaranga')">
-                    <div class="dwelling-image" style="background-color: #f39c12;">
-                        [Фото: Яранга]
-                    </div>
-                    <div class="dwelling-content">
-                        <h3>Яранга</h3>
-                        <p>Переносное жилище народов Севера</p>
-                        <p><strong>Регион:</strong> Сибирь, Чукотка</p>
-                        <p><strong>Материалы:</strong> Дерево, оленьи шкуры</p>
-                    </div>
-                </div>
-
-                <!-- Чум -->
-                <div class="dwelling-card" onclick="openModal('chum')">
-                    <div class="dwelling-image" style="background-color: #27ae60;">
-                        [Фото: Чум]
-                    </div>
-                    <div class="dwelling-content">
-                        <h3>Чум</h3>
-                        <p>Коническое переносное жилище</p>
-                        <p><strong>Регион:</strong> Сибирь, Северная Европа</p>
-                        <p><strong>Материалы:</strong> Жерди, береста, шкуры</p>
-                    </div>
-                </div>
-
-                <!-- Вигвам -->
-                <div class="dwelling-card" onclick="openModal('vigvam')">
-                    <div class="dwelling-image" style="background-color: #9b59b6;">
-                        [Фото: Вигвам]
-                    </div>
-                    <div class="dwelling-content">
-                        <h3>Вигвам</h3>
-                        <p>Жилище североамериканских индейцев</p>
-                        <p><strong>Регион:</strong> Северная Америка</p>
-                        <p><strong>Материалы:</strong> Дерево, кора, шкуры</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Особенности -->
-        <section id="features" class="features">
-            <h2 class="section-title">Особенности традиционных жилищ</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Адаптация к климату</h3>
-                    <p>Каждое жилище идеально приспособлено к местным климатическим условиям</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Локальные материалы</h3>
-                    <p>Использование доступных природных материалов региона</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Культурные традиции</h3>
-                    <p>Отражение культурных особенностей и образа жизни народов</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Экологичность</h3>
-                    <p>Естественная вентиляция и температурный режим</p>
-                </div>
+        <section class="quick-links">
+            <h2>Быстрый доступ</h2>
+            <div class="links-grid">
+                <a href="north.html" class="quick-link">
+                    <h4>Жилища народов Севера</h4>
+                    <p>Чум, яранга, иглу</p>
+                </a>
+                <a href="asia.html" class="quick-link">
+                    <h4>Жилища Азии</h4>
+                    <p>Юрта, минка, ханок</p>
+                </a>
+                <a href="materials.html" class="quick-link">
+                    <h4>Конструкции и материалы</h4>
+                    <p>Материалы и технологии строительства</p>
+                </a>
+                <a href="dictionary.html" class="quick-link">
+                    <h4>Словарь терминов</h4>
+                    <p>Архитектурные понятия и определения</p>
+                </a>
             </div>
         </section>
     </main>
 
-    <!-- Модальные окна -->
-    <!-- Русская изба -->
-    <div id="modal-izba" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('izba')">&times;</span>
-            <div class="modal-header">
-                <h2>Русская изба</h2>
-                <p>Традиционное деревянное жилище русских крестьян</p>
-            </div>
-            <div class="modal-body">
-                <p><strong>Регион:</strong> Россия, особенно северные и центральные регионы</p>
-                <p><strong>Материалы:</strong> Дерево (сосна, ель), глина, солома</p>
-                
-                <div class="dwelling-features">
-                    <h4>Особенности конструкции:</h4>
-                    <p>Избы строились из бревен деревьев хвойных пород - сосны и ели. Были четырехстенные и пятистенные. Планировка избы долгое время оставалась неизменной: по одну сторону сени по другую клеть.</p>
-                    <p>В давние времена избу топили по черному: дым выходил через дверь или специальное окошко над ней. Сбоку от печи настилали полати. К теплой избе примыкали и хозяйственные помещения.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Внутреннее убранство:</h4>
-                    <p>Центральное место в избе занимала русская печь - сердце дома. По диагонали от печи находился "красный угол" с иконами. Мебель была минимальной: лавки вдоль стен, стол, сундук для одежды.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Историческое значение:</h4>
-                    <p>Изба - очень древний вид жилища, отражающий мудрость и практичность русского народа. Такая конструкция идеально подходила для сурового климата с холодными зимами.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Иглу -->
-    <div id="modal-iglu" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('iglu')">&times;</span>
-            <div class="modal-header">
-                <h2>Иглу</h2>
-                <p>Зимнее жилище эскимосов из снежных блоков</p>
-            </div>
-            <div class="modal-body">
-                <p><strong>Регион:</strong> Арктика, Канада, Гренландия, Аляска</p>
-                <p><strong>Материалы:</strong> Снег, лед, шкуры животных</p>
-                
-                <div class="dwelling-features">
-                    <h4>Особенности конструкции:</h4>
-                    <p>Иглу представляет собой куполообразную постройку диаметром 3-4 метра и высотой около 2 метров из уплотнённых ветром снежных или ледяных блоков.</p>
-                    <p>Все блоки устанавливались по особым принципам, снаружи, чтобы сделать его крепче, дом могли поливать водой. Иглу полностью состоит из снега. Даже вместо стёкол в отверстия-окна вставлены льдинки.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Теплоизоляция:</h4>
-                    <p>Несмотря на кажущуюся хрупкость, иглу обеспечивают отличную теплоизоляцию. Снег работает как природный изолятор, сохраняя тепло внутри. Температура внутри может быть на 20-30 градусов выше, чем снаружи.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Практическое применение:</h4>
-                    <p>На севере у эскимосов Аляски всегда не хватало стройматериалов, зато был много снега. И потому живущие в крайних широтах народы придумали этот особый куполообразный дом.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Юрта -->
-    <div id="modal-yurta" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('yurta')">&times;</span>
-            <div class="modal-header">
-                <h2>Юрта</h2>
-                <p>Переносное жилище кочевых народов</p>
-            </div>
-            <div class="modal-body">
-                <p><strong>Регион:</strong> Центральная Азия, Монголия, Казахстан, Киргизия</p>
-                <p><strong>Материалы:</strong> Дерево, войлок, кожаные ремни</p>
-                
-                <div class="dwelling-features">
-                    <h4>Особенности конструкции:</h4>
-                    <p>Юрта состоит из деревянных решётчатых стенок с куполом из жердей и войлочным покрытием. Собрать или разобрать такое жилище семья может примерно за пару часов.</p>
-                    <p>В центре потолка оставлялось небольшое отверстие для тяги. В ней кочевники находят защиту от летнего зноя, суховеев, дождей и зимних морозов.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Внутреннее устройство:</h4>
-                    <p>В центре юрты — очаг; место у входа предназначалось для гостей; на женской половине хранилась утварь, на мужской — сбруя.</p>
-                    <p>Вместе с жителями, пасущими стада, юрты без особых усилий перемещаются от одного пастбища к другому.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Яранга -->
-    <div id="modal-yaranga" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('yaranga')">&times;</span>
-            <div class="modal-header">
-                <h2>Яранга</h2>
-                <p>Переносное жилище народов Севера</p>
-            </div>
-            <div class="modal-body">
-                <p><strong>Регион:</strong> Сибирь, Чукотка, северо-восток России</p>
-                <p><strong>Материалы:</strong> Деревянные шесты, оленьи шкуры, моржовые шкуры</p>
-                
-                <div class="dwelling-features">
-                    <h4>Особенности конструкции:</h4>
-                    <p>Яранга имеет круглый план и вертикальный каркас с коническим куполом, сооруженным из шестов. Снаружи шесты покрывались оленьими или моржовыми шкурами.</p>
-                    <p>Высота яранги составляет от 3,5 до 4,7 метра, диаметр - от 5,7 до 7-8 метров. На обычную ярангу требуется около 50 шкур.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Внутреннее устройство:</h4>
-                    <p>Яранга состоит из двух половин: чоттагина (холодная часть) и полога (теплый шатер). Полог служит спальным помещением, отапливается и освещается жировой лампой.</p>
-                    <p>В чоттагине стоят ящики с одеждой, выделанными шкурами, отрезами тканей. Рядом стояли бочки с квашениями.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Особенности быта:</h4>
-                    <p>Летом стенки можно поднять для вентиляции. Отапливать всю ярангу зимой было бы слишком хлопотно, поэтому жильцы спят в пологе - маленькой кабинке из оленьих шкур, очень теплой и уютной.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Чум -->
-    <div id="modal-chum" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('chum')">&times;</span>
-            <div class="modal-header">
-                <h2>Чум</h2>
-                <p>Коническое переносное жилище народов Севера</p>
-            </div>
-            <div class="modal-body">
-                <p><strong>Регион:</strong> Сибирь, Северная Европа, Скандинавия</p>
-                <p><strong>Материалы:</strong> Деревянные жерди, береста, оленьи шкуры, войлок</p>
-                
-                <div class="dwelling-features">
-                    <h4>Особенности конструкции:</h4>
-                    <p>Чум имеет коническую форму и круглый или слегка овальный план (диаметр 3-8 метров). Конический остов жилища состоит из 30-50 наклонных шестов.</p>
-                    <p>Зимой чум накрывался шкурами оленя, изюбра или лося, сшитыми в полотнища. Летом - вываренной берестой или корой, иногда парусиной или мешковиной.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Внутреннее устройство:</h4>
-                    <p>В центре чума находится очаг, по обе стороны от входа - места для спанья. На пол клали бересту, циновки из ивовых прутьев и сухой травы, сверху - оленьи шкуры.</p>
-                    <p>Вход завешивался шкурами, летом - грубой тканью.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Историческое значение:</h4>
-                    <p>Историки жилища признают эту форму первым опытом искусственно создаваемого жилья. Прообразом чума могли служить прислонённые наклонно к дереву ветви.</p>
-                    <p>Чум используется народами Севера с глубокой древности и продолжает служить им до сих пор.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Вигвам -->
-    <div id="modal-vigvam" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('vigvam')">&times;</span>
-            <div class="modal-header">
-                <h2>Вигвам</h2>
-                <p>Жилище североамериканских индейцев</p>
-            </div>
-            <div class="modal-body">
-                <p><strong>Регион:</strong> Северная Америка, лесные регионы</p>
-                <p><strong>Материалы:</strong> Дерево, кора деревьев, циновки, шкуры животных</p>
-                
-                <div class="dwelling-features">
-                    <h4>Особенности конструкции:</h4>
-                    <p>Вигвам - это шалаш куполообразной формы с отверстием для выхода дыма. Каркас вигвама делался из изогнутых тонких стволов и накрывался корой, циновками из тростника, шкурами или кусками ткани.</p>
-                    <p>Вигвамы могут быть как круглыми в плане, так и вытянутыми и иметь несколько дымовых отверстий.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Разновидности:</h4>
-                    <p>Существуют разные типы вигвамов в зависимости от региона и племени. Некоторые имеют коническую форму, другие - куполообразную.</p>
-                    <p>В отличие от типи, которые использовали кочевые племена равнин, вигвамы были более постоянными жилищами лесных племен.</p>
-                </div>
-
-                <div class="dwelling-features">
-                    <h4>Культурное значение:</h4>
-                    <p>Вигвам был не просто жилищем, а центром семейной и общественной жизни. Здесь проводились ритуалы, собирались советы, передавались традиции от старших к младшим.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Подвал -->
     <footer>
         <div class="container">
-            <p>Индивидуальный проект "Жилища мира"</p>
-            <p>© 2025 Протатип</p>
+            <p>&copy; 2025 Индивидуальный проект "Жилища мира".</p>
         </div>
     </footer>
 
-    <script>
-        // Функции для модальных окон
-        function openModal(type) {
-            document.getElementById('modal-' + type).style.display = 'block';
-        }
-
-        function closeModal(type) {
-            document.getElementById('modal-' + type).style.display = 'none';
-        }
-
-        // Закрытие модального окна при клике вне его
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-            }
-        }
-
-        // Функция для копирования ссылки
-        document.getElementById('shareLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const currentUrl = window.location.href;
-            
-            navigator.clipboard.writeText(currentUrl).then(function() {
-                const originalText = e.target.textContent;
-                e.target.textContent = 'Ссылка скопирована!';
-                e.target.style.background = '#27ae60';
-                
-                setTimeout(function() {
-                    e.target.textContent = originalText;
-                    e.target.style.background = '#3498db';
-                }, 2000);
-            }).catch(function() {
-                alert('Скопируйте эту ссылку: ' + currentUrl);
-            });
-        });
-
-        // Показываем актуальную ссылку при загрузке
-        document.addEventListener('DOMContentLoaded', function() {
-            const shareLink = document.getElementById('shareLink');
-            shareLink.textContent = window.location.href;
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
