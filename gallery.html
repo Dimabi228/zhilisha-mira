@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея - Жилища мира</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Галерея</h1>
+            <p>Фотографии традиционных жилищ со всего мира</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="dwellings.html">Традиционные жилища</a></li>
+                <li><a href="north.html">Жилища Севера</a></li>
+                <li><a href="asia.html">Жилища Азии</a></li>
+                <li><a href="climate.html">Климат и архитектура</a></li>
+                <li><a href="materials.html">Конструкции и материалы</a></li>
+                <li><a href="gallery.html" class="active">Галерея</a></li>
+                <li><a href="dictionary.html">Словарь терминов</a></li>
+                <li><a href="about.html">О проекте</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <!-- Автоматически заполнится через JavaScript -->
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="upload-section">
+            <h2>Добавить фотографию</h2>
+            <p>Загрузите фотографии традиционных жилищ для пополнения галереи</p>
+            
+            <div class="upload-area">
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                <p>📁 Перетащите сюда изображение или</p>
+                <button class="upload-btn">Выбрать файл</button>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">
+                    Поддерживаемые форматы: JPG, PNG, GIF<br>
+                    Максимальный размер: 5MB
+                </p>
+            </div>
+            
+            <div id="uploadPreview" class="upload-preview">
+                <img id="previewImage" class="preview-image">
+                <p>Предпросмотр загружаемого изображения</p>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2>Галерея изображений</h2>
+            <p>Коллекция фотографий традиционных жилищ, собранная участниками проекта</p>
+            
+            <div id="galleryContainer" class="gallery-grid">
+                <!-- Галерея будет заполняться через JavaScript -->
+                <div class="no-results">
+                    <p>В галерее пока нет изображений.</p>
+                    <p>Добавьте первые фотографии через форму загрузки выше!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <h2>Примеры традиционных жилищ</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background-color: #8e44ad;">
+                        <div class="image-placeholder">Русская изба</div>
+                    </div>
+                    <div class="gallery-caption">
+                        <h4>Русская изба</h4>
+                        <p>Традиционное деревянное жилище</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background-color: #e74c3c;">
+                        <div class="image-placeholder">Юрта</div>
+                    </div>
+                    <div class="gallery-caption">
+                        <h4>Юрта</h4>
+                        <p>Переносное жилище кочевников</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background-color: #3498db;">
+                        <div class="image-placeholder">Иглу</div>
+                    </div>
+                    <div class="gallery-caption">
+                        <h4>Иглу</h4>
+                        <p>Снежное жилище эскимосов</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background-color: #f39c12;">
+                        <div class="image-placeholder">Яранга</div>
+                    </div>
+                    <div class="gallery-caption">
+                        <h4>Яранга</h4>
+                        <p>Жилище народов Чукотки</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Индивидуальный проект "Жилища мира".</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

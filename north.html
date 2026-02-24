@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жилища народов Севера - Жилища мира</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Жилища народов Севера</h1>
+            <p>Традиционные жилища в условиях сурового климата</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="dwellings.html">Традиционные жилища</a></li>
+                <li><a href="north.html" class="active">Жилища Севера</a></li>
+                <li><a href="asia.html">Жилища Азии</a></li>
+                <li><a href="climate.html">Климат и архитектура</a></li>
+                <li><a href="materials.html">Конструкции и материалы</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="dictionary.html">Словарь терминов</a></li>
+                <li><a href="about.html">О проекте</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <!-- Автоматически заполнится через JavaScript -->
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="filters">
+            <h2>Фильтр жилищ</h2>
+            <div class="filter-group">
+                <label for="material-filter">Материал:</label>
+                <select id="material-filter" class="filter-select">
+                    <option value="all">Все материалы</option>
+                    <option value="wood">Дерево</option>
+                    <option value="skins">Шкуры животных</option>
+                    <option value="snow">Снег/Лёд</option>
+                    <option value="birchbark">Береста</option>
+                </select>
+            </div>
+        </section>
+
+        <div class="cards-grid">
+            <!-- Чум -->
+            <div class="card" data-material="skins" data-region="north" data-climate="arctic" data-image="chum">
+                <div class="card-image">
+                    <div class="card-title">Чум</div>
+                </div>
+                <div class="card-content">
+                    <h3>Чум</h3>
+                    <p><strong>Народы:</strong> Ненцы, ханты, манси, эвенки</p>
+                    <p><strong>Материалы:</strong> Деревянные жерди, оленьи шкуры, береста</p>
+                    <p><strong>Особенности:</strong> Коническая форма, быстрая сборка и разборка, отличная защита от ветра</p>
+                    <p><strong>Регион:</strong> Сибирь, Скандинавия, Северная Европа</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Яранга -->
+            <div class="card" data-material="skins" data-region="north" data-climate="arctic" data-image="yaranga">
+                <div class="card-image">
+                    <div class="card-title">Яранга</div>
+                </div>
+                <div class="card-content">
+                    <h3>Яранга</h3>
+                    <p><strong>Народы:</strong> Чукчи, коряки, эвены, юкагиры</p>
+                    <p><strong>Материалы:</strong> Деревянные шесты, оленьи и моржовые шкуры</p>
+                    <p><strong>Особенности:</strong> Цилиндрическая форма с конической крышей, разделение на жилую и хозяйственную зоны</p>
+                    <p><strong>Регион:</strong> Чукотка, Камчатка, северо-восток Сибири</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Иглу -->
+            <div class="card" data-material="snow" data-region="north" data-climate="arctic" data-image="iglu">
+                <div class="card-image">
+                    <div class="card-title">Иглу</div>
+                </div>
+                <div class="card-content">
+                    <h3>Иглу</h3>
+                    <p><strong>Народы:</strong> Эскимосы, инуиты</p>
+                    <p><strong>Материалы:</strong> Снежные блоки, лёд, шкуры животных</p>
+                    <p><strong>Особенности:</strong> Куполообразная форма, отличная теплоизоляция, строится из снежных блоков</p>
+                    <p><strong>Регион:</strong> Арктика, Гренландия, Канада, Аляска</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Балок -->
+            <div class="card" data-material="wood" data-region="north" data-climate="subarctic" data-image="balok">
+                <div class="card-image">
+                    <div class="card-title">Балок</div>
+                </div>
+                <div class="card-content">
+                    <h3>Балок</h3>
+                    <p><strong>Народы:</strong> Народы Сибири</p>
+                    <p><strong>Материалы:</strong> Дерево, шкуры, войлок</p>
+                    <p><strong>Особенности:</strong> Передвижное жилище на полозьях, используется оленеводами</p>
+                    <p><strong>Регион:</strong> Северная Сибирь</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Индивидуальный проект "Жилища мира".</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

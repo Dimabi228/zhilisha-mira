@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жилища Азии - Жилища мира</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Жилища Азии</h1>
+            <p>Традиционная архитектура азиатских народов</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="dwellings.html">Традиционные жилища</a></li>
+                <li><a href="north.html">Жилища Севера</a></li>
+                <li><a href="asia.html" class="active">Жлища Азии</a></li>
+                <li><a href="climate.html">Климат и архитектура</a></li>
+                <li><a href="materials.html">Конструкции и материалы</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="dictionary.html">Словарь терминов</a></li>
+                <li><a href="about.html">О проекте</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <!-- Автоматически заполнится через JavaScript -->
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="filters">
+            <h2>Фильтр жилищ</h2>
+            <div class="filter-group">
+                <label for="material-filter">Материал:</label>
+                <select id="material-filter" class="filter-select">
+                    <option value="all">Все материалы</option>
+                    <option value="wood">Дерево</option>
+                    <option value="felt">Войлок</option>
+                    <option value="stone">Камень</option>
+                    <option value="clay">Глина</option>
+                    <option value="bamboo">Бамбук</option>
+                </select>
+            </div>
+        </section>
+
+        <div class="cards-grid">
+            <!-- Юрта -->
+            <div class="card" data-material="felt" data-region="asia" data-climate="continental" data-image="yurta">
+                <div class="card-image">
+                    <div class="card-title">Юрта</div>
+                </div>
+                <div class="card-content">
+                    <h3>Юрта</h3>
+                    <p><strong>Народы:</strong> Монголы, казахи, киргизы, тувинцы</p>
+                    <p><strong>Материалы:</strong> Деревянный каркас, войлочное покрытие</p>
+                    <p><strong>Особенности:</strong> Круглая форма, быстро собирается и разбирается, идеальна для кочевого образа жизни</p>
+                    <p><strong>Регион:</strong> Центральная Азия, Монголия, Южная Сибирь</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Минка -->
+            <div class="card" data-material="wood" data-region="asia" data-climate="temperate" data-image="minka">
+                <div class="card-image">
+                    <div class="card-title">Минка</div>
+                </div>
+                <div class="card-content">
+                    <h3>Минка</h3>
+                    <p><strong>Народы:</strong> Японцы</p>
+                    <p><strong>Материалы:</strong> Дерево, бамбук, бумага, солома</p>
+                    <p><strong>Особенности:</strong> Раздвижные стены, приподнятый пол, естественная вентиляция</p>
+                    <p><strong>Регион:</strong> Япония</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Ханок -->
+            <div class="card" data-material="wood" data-region="asia" data-climate="temperate" data-image="hanok">
+                <div class="card-image">
+                    <div class="card-title">Ханок</div>
+                </div>
+                <div class="card-content">
+                    <h3>Ханок</h3>
+                    <p><strong>Народы:</strong> Корейцы</p>
+                    <p><strong>Материалы:</strong> Дерево, глина, черепица, бумага</p>
+                    <p><strong>Особенности:</strong> Система ондоль (подпольное отопление), изогнутая крыша</p>
+                    <p><strong>Регион:</strong> Корея</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Яодун -->
+            <div class="card" data-material="stone" data-region="asia" data-climate="continental" data-image="yaodun">
+                <div class="card-image">
+                    <div class="card-title">Яодун</div>
+                </div>
+                <div class="card-content">
+                    <h3>Яодун</h3>
+                    <p><strong>Народы:</strong> Китайцы</p>
+                    <p><strong>Материалы:</strong> Лёсс (специальная почва), камень</p>
+                    <p><strong>Особенности:</strong> Пещерные жилища, вырубленные в склонах холмов, отличная теплоизоляция</p>
+                    <p><strong>Регион:</strong> Северный Китай</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Индивидуальный проект "Жилища мира".</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

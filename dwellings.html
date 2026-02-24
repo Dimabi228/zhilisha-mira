@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Традиционные жилища - Жилища мира</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Традиционные жилища</h1>
+            <p>Полный обзор жилищ народов мира</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="dwellings.html" class="active">Традиционные жилища</a></li>
+                <li><a href="north.html">Жилища Севера</a></li>
+                <li><a href="asia.html">Жилища Азии</a></li>
+                <li><a href="climate.html">Климат и архитектура</a></li>
+                <li><a href="materials.html">Конструкции и материалы</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="dictionary.html">Словарь терминов</a></li>
+                <li><a href="about.html">О проекте</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <!-- Автоматически заполнится через JavaScript -->
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="search-box">
+            <input type="text" id="search-input" class="search-input" placeholder="Поиск жилищ по названию или описанию...">
+        </section>
+
+        <section class="filters">
+            <h2>Фильтр жилищ</h2>
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                <div class="filter-group">
+                    <label for="region-filter">Регион:</label>
+                    <select id="region-filter" class="filter-select">
+                        <option value="all">Все регионы</option>
+                        <option value="north">Северные регионы</option>
+                        <option value="asia">Азия</option>
+                        <option value="europe">Европа</option>
+                        <option value="africa">Африка</option>
+                        <option value="america">Америка</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="material-filter">Материал:</label>
+                    <select id="material-filter" class="filter-select">
+                        <option value="all">Все материалы</option>
+                        <option value="wood">Дерево</option>
+                        <option value="stone">Камень</option>
+                        <option value="clay">Глина</option>
+                        <option value="skins">Шкуры</option>
+                        <option value="felt">Войлок</option>
+                        <option value="snow">Снег/Лёд</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="climate-filter">Климат:</label>
+                    <select id="climate-filter" class="filter-select">
+                        <option value="all">Все климатические зоны</option>
+                        <option value="arctic">Арктический</option>
+                        <option value="continental">Континентальный</option>
+                        <option value="temperate">Умеренный</option>
+                        <option value="tropical">Тропический</option>
+                        <option value="desert">Пустынный</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <div class="cards-grid">
+            <!-- Русская изба -->
+            <div class="card" data-material="wood" data-region="europe" data-climate="temperate" data-image="izba">
+                <div class="card-image">
+                    <div class="card-title">Русская изба</div>
+                </div>
+                <div class="card-content">
+                    <h3>Русская изба</h3>
+                    <p><strong>Регион:</strong> Россия, Восточная Европа</p>
+                    <p><strong>Материалы:</strong> Дерево (сосна, ель), глина, солома</p>
+                    <p><strong>Климат:</strong> Умеренный континентальный</p>
+                    <p><strong>Особенности:</strong> Срубная конструкция, русская печь, декоративные элементы</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Чум -->
+            <div class="card" data-material="skins" data-region="north" data-climate="arctic" data-image="chum">
+                <div class="card-image">
+                    <div class="card-title">Чум</div>
+                </div>
+                <div class="card-content">
+                    <h3>Чум</h3>
+                    <p><strong>Регион:</strong> Сибирь, Северная Европа</p>
+                    <p><strong>Материалы:</strong> Деревянные жерди, оленьи шкуры, береста</p>
+                    <p><strong>Климат:</strong> Арктический, субарктический</p>
+                    <p><strong>Особенности:</strong> Коническая форма, быстрая сборка, мобильность</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Яранга -->
+            <div class="card" data-material="skins" data-region="north" data-climate="arctic" data-image="yaranga">
+                <div class="card-image">
+                    <div class="card-title">Яранга</div>
+                </div>
+                <div class="card-content">
+                    <h3>Яранга</h3>
+                    <p><strong>Регион:</strong> Чукотка, Камчатка</p>
+                    <p><strong>Материалы:</strong> Деревянные шесты, оленьи и моржовые шкуры</p>
+                    <p><strong>Климат:</strong> Арктический</p>
+                    <p><strong>Особенности:</strong> Цилиндрическая форма с конической крышей, разделение на зоны</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Иглу -->
+            <div class="card" data-material="snow" data-region="north" data-climate="arctic" data-image="iglu">
+                <div class="card-image">
+                    <div class="card-title">Иглу</div>
+                </div>
+                <div class="card-content">
+                    <h3>Иглу</h3>
+                    <p><strong>Регион:</strong> Арктика, Канада, Гренландия</p>
+                    <p><strong>Материалы:</strong> Снежные блоки, лёд, шкуры</p>
+                    <p><strong>Климат:</strong> Арктический</p>
+                    <p><strong>Особенности:</strong> Куполообразная форма, отличная теплоизоляция</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Юрта -->
+            <div class="card" data-material="felt" data-region="asia" data-climate="continental" data-image="yurta">
+                <div class="card-image">
+                    <div class="card-title">Юрта</div>
+                </div>
+                <div class="card-content">
+                    <h3>Юрта</h3>
+                    <p><strong>Регион:</strong> Центральная Азия, Монголия</p>
+                    <p><strong>Материалы:</strong> Деревянный каркас, войлочное покрытие</p>
+                    <p><strong>Климат:</strong> Резко континентальный</p>
+                    <p><strong>Особенности:</strong> Круглая форма, быстрая сборка, идеальна для кочевников</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Минка -->
+            <div class="card" data-material="wood" data-region="asia" data-climate="temperate" data-image="minka">
+                <div class="card-image">
+                    <div class="card-title">Минка</div>
+                </div>
+                <div class="card-content">
+                    <h3>Минка</h3>
+                    <p><strong>Регион:</strong> Япония</p>
+                    <p><strong>Материалы:</strong> Дерево, бамбук, бумага, солома</p>
+                    <p><strong>Климат:</strong> Умеренный муссонный</p>
+                    <p><strong>Особенности:</strong> Раздвижные стены, приподнятый пол, естественная вентиляция</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Ханок -->
+            <div class="card" data-material="wood" data-region="asia" data-climate="temperate" data-image="hanok">
+                <div class="card-image">
+                    <div class="card-title">Ханок</div>
+                </div>
+                <div class="card-content">
+                    <h3>Ханок</h3>
+                    <p><strong>Регион:</strong> Корея</p>
+                    <p><strong>Материалы:</strong> Дерево, глина, черепица, бумага</p>
+                    <p><strong>Климат:</strong> Умеренный муссонный</p>
+                    <p><strong>Особенности:</strong> Система ондоль (подпольное отопление), изогнутая крыша</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+
+            <!-- Вигвам -->
+            <div class="card" data-material="wood" data-region="america" data-climate="temperate" data-image="vigvam">
+                <div class="card-image">
+                    <div class="card-title">Вигвам</div>
+                </div>
+                <div class="card-content">
+                    <h3>Вигвам</h3>
+                    <p><strong>Регион:</strong> Северная Америка</p>
+                    <p><strong>Материалы:</strong> Дерево, кора, шкуры, циновки</p>
+                    <p><strong>Климат:</strong> Умеренный</p>
+                    <p><strong>Особенности:</strong> Куполообразная форма, используется лесными племенами</p>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Индивидуальный проект "Жилища мира".</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
