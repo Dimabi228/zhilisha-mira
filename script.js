@@ -14,7 +14,6 @@ function initializeBreadcrumbs() {
         'asia': 'Жилища Азии',
         'climate': 'Климат и архитектура',
         'materials': 'Конструкции и материалы',
-        'gallery': 'Галерея',
         'dictionary': 'Словарь терминов',
         'about': 'О проекте'
     };
@@ -30,21 +29,20 @@ function initializeBreadcrumbs() {
 }
 
 // 2. Предзагрузка изображений для карточек
-// 2. Предзагрузка изображений для карточек
 function preloadCardImages() {
     console.log('🔍 Начинаем загрузку изображений для карточек...');
     
     const imageUrls = [
-        {url: 'images/izba.jpg', names: ['izba']},      // Русская изба
-        {url: 'images/chum.jpg', names: ['chum']},      // Чум
-        {url: 'images/yaranga.jpg', names: ['yaranga']}, // Яранга
-        {url: 'images/iglu.jpg', names: ['iglu']},      // Иглу
-        {url: 'images/yurta.jpg', names: ['yurta']},    // Юрта
-        {url: 'images/minka.jpg', names: ['minka']},    // Минка
-        {url: 'images/hanok.jpg', names: ['hanok']},    // Ханок
-        {url: 'images/vigvam.jpg', names: ['vigvam']},  // Вигвам
-        {url: 'images/balok.jpg', names: ['balok']},    // Балок
-        {url: 'images/yaodun.jpg', names: ['yaodun']}   // Яодун
+        {url: 'images/izba.jpg', names: ['izba']},
+        {url: 'images/chum.jpg', names: ['chum']},
+        {url: 'images/yaranga.jpg', names: ['yaranga']},
+        {url: 'images/iglu.jpg', names: ['iglu']},
+        {url: 'images/yurta.jpg', names: ['yurta']},
+        {url: 'images/minka.jpg', names: ['minka']},
+        {url: 'images/hanok.jpg', names: ['hanok']},
+        {url: 'images/vigvam.jpg', names: ['vigvam']},
+        {url: 'images/balok.jpg', names: ['balok']},
+        {url: 'images/yaodun.jpg', names: ['yaodun']}
     ];
     
     let loaded = 0;
@@ -56,9 +54,7 @@ function preloadCardImages() {
             loaded++;
             console.log(`✅ Загружено: ${loaded}/${total} - ${item.url}`);
             
-            // Ищем карточки по всем возможным именам
             item.names.forEach(imageName => {
-                // Несколько вариантов поиска для надежности
                 const selectors = [
                     `[data-image="${imageName}"] .card-image`,
                     `[data-image*="${imageName}"] .card-image`,
@@ -67,13 +63,10 @@ function preloadCardImages() {
                 
                 selectors.forEach(selector => {
                     const cards = document.querySelectorAll(selector);
-                    if (cards.length > 0) {
-                        console.log(`🔍 Найдено карточек с селектором "${selector}": ${cards.length}`);
-                        cards.forEach(card => {
-                            card.classList.add('loaded');
-                            card.style.backgroundImage = `url('${item.url}')`;
-                        });
-                    }
+                    cards.forEach(card => {
+                        card.classList.add('loaded');
+                        card.style.backgroundImage = `url('${item.url}')`;
+                    });
                 });
             });
             
@@ -93,7 +86,7 @@ function preloadCardImages() {
     });
 }
 
-// 3. Инициализация поиска (ИСПРАВЛЕННАЯ)
+// 3. Инициализация поиска
 function initializeSearch() {
     const searchInput = document.getElementById('search-input');
     const cards = document.querySelectorAll('.card');
@@ -104,12 +97,10 @@ function initializeSearch() {
     searchInput.addEventListener('input', function(e) {
         const searchTerm = e.target.value.toLowerCase().trim();
         
-        // Поиск по карточкам
         if (cards.length > 0) {
             performCardsSearch(searchTerm, cards);
         }
         
-        // Поиск по словарю
         if (termItems.length > 0) {
             performTermsSearch(searchTerm, termItems);
         }
@@ -250,169 +241,180 @@ function initializeFilters() {
     if (materialFilter) materialFilter.addEventListener('change', handleFilterChange);
     if (regionFilter) regionFilter.addEventListener('change', handleFilterChange);
     if (climateFilter) climateFilter.addEventListener('change', handleFilterChange);
+}
+
+// 5. Модальное окно для изображений
+function initializeImageModal() {
+    const modal = document.createElement('div');
+    modal.className = 'image-modal';
+    modal.innerHTML = `
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img class="modal-image">
+        </div>
+    `;
+    document.body.appendChild(modal);
     
-    const resetButton = document.querySelector('.reset-filters');
-    if (resetButton) {
-        resetButton.addEventListener('click', () => {
-            if (materialFilter) materialFilter.value = 'all';
-            if (regionFilter) regionFilter.value = 'all';
-            if (climateFilter) climateFilter.value = 'all';
-            handleFilterChange();
+    const modalImg = modal.querySelector('.modal-image');
+    const closeBtn = modal.querySelector('.close-modal');
+    
+    document.addEventListener('click', function(e) {
+        const cardImage = e.target.closest('.card-image');
+        
+        if (cardImage && cardImage.style.backgroundImage) {
+            const imageUrl = cardImage.style.backgroundImage
+                .replace('url("', '')
+                .replace('")', '');
+            if (imageUrl && imageUrl !== 'none') {
+                modalImg.src = imageUrl;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+    });
+    
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+    
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+
+// 6. Прелоадер
+function initializePreloader() {
+    const preloader = document.createElement('div');
+    preloader.className = 'preloader';
+    preloader.innerHTML = `
+        <div class="spinner"></div>
+        <p style="margin-top: 20px; color: white; font-size: 1.2rem;">Загрузка "Жилища мира"...</p>
+        <p style="margin-top: 10px; color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+            Изучаем традиционные жилища народов мира
+        </p>
+    `;
+    document.body.appendChild(preloader);
+    
+    Promise.all([
+        new Promise(resolve => {
+            if (document.readyState === 'complete') {
+                resolve();
+            } else {
+                window.addEventListener('load', resolve);
+            }
+        }),
+        new Promise(resolve => setTimeout(resolve, 1500))
+    ]).then(() => {
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+            preloader.style.display = 'none';
+            showSuccessMessage('Добро пожаловать в мир традиционных жилищ! 🏠');
+        }, 500);
+    });
+}
+
+// 7. Кнопка "Наверх"
+function initializeScrollTop() {
+    const scrollBtn = document.createElement('button');
+    scrollBtn.className = 'scroll-top';
+    scrollBtn.textContent = '↑';
+    scrollBtn.title = 'Наверх';
+    document.body.appendChild(scrollBtn);
+    
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollBtn.style.display = 'block';
+        } else {
+            scrollBtn.style.display = 'none';
+        }
+    });
+    
+    scrollBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// 8. Навигация
+function initializeNavigation() {
+    const currentPage = window.location.pathname.split('/').pop();
+    const navLinks = document.querySelectorAll('nav a');
+    
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage || 
+            (currentPage === '' && linkHref === 'index.html') ||
+            (currentPage === 'index.html' && linkHref === 'index.html')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// 9. Переключение тем
+function initThemeSwitcher() {
+    const themeSwitcher = document.createElement('div');
+    themeSwitcher.className = 'theme-switcher';
+    themeSwitcher.innerHTML = `
+        <button class="theme-btn light" title="Светлая тема">🌞</button>
+        <button class="theme-btn dark-red" title="Темная красная тема">🔥</button>
+    `;
+    document.body.appendChild(themeSwitcher);
+    
+    const savedTheme = localStorage.getItem('site-theme');
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+    
+    const lightBtn = document.querySelector('.theme-btn.light');
+    const darkRedBtn = document.querySelector('.theme-btn.dark-red');
+    
+    if (lightBtn) {
+        lightBtn.addEventListener('click', () => {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('site-theme', 'light');
+            showSuccessMessage('🌞 Светлая тема активирована');
+            createRippleEffect(lightBtn, event);
+        });
+    }
+    
+    if (darkRedBtn) {
+        darkRedBtn.addEventListener('click', () => {
+            document.documentElement.setAttribute('data-theme', 'dark-red');
+            localStorage.setItem('site-theme', 'dark-red');
+            showSuccessMessage('🔥 Темная красная тема активирована!');
+            createRippleEffect(darkRedBtn, event);
         });
     }
 }
 
-// 5. Инициализация галереи
-function initializeGallery() {
-    const uploadArea = document.querySelector('.upload-area');
-    const uploadBtn = document.querySelector('.upload-btn');
-    const imageUpload = document.getElementById('imageUpload');
-    const preview = document.getElementById('uploadPreview');
-    const previewImage = document.getElementById('previewImage');
-    const galleryContainer = document.getElementById('galleryContainer');
+function createRippleEffect(button, event) {
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple-effect');
+    button.appendChild(ripple);
     
-    // Инициализируем галерею с начальными изображениями
-    if (galleryContainer) {
-        initDefaultGallery(galleryContainer);
-    }
+    const rect = button.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
     
-    if (!uploadArea || !uploadBtn) return;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
     
-    uploadBtn.addEventListener('click', () => {
-        imageUpload.click();
-    });
-    
-    uploadArea.addEventListener('click', () => {
-        imageUpload.click();
-    });
-    
-    imageUpload.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        
-        if (!file.type.match('image.*')) {
-            showErrorMessage('Пожалуйста, выберите файл изображения (JPG, PNG, GIF)');
-            return;
-        }
-        
-        if (file.size > 5 * 1024 * 1024) {
-            showErrorMessage('Размер файла не должен превышать 5MB');
-            return;
-        }
-        
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            previewImage.src = e.target.result;
-            preview.style.display = 'block';
-            
-            addToGallery(e.target.result, file.name, galleryContainer);
-        };
-        reader.readAsDataURL(file);
-    });
-    
-    uploadArea.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        this.classList.add('dragover');
-    });
-    
-    uploadArea.addEventListener('dragleave', function(e) {
-        this.classList.remove('dragover');
-    });
-    
-    uploadArea.addEventListener('drop', function(e) {
-        e.preventDefault();
-        this.classList.remove('dragover');
-        
-        const file = e.dataTransfer.files[0];
-        if (file && file.type.match('image.*')) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImage.src = e.target.result;
-                preview.style.display = 'block';
-                addToGallery(e.target.result, file.name, galleryContainer);
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
 }
 
-// Инициализация начальной галереи
-function initDefaultGallery(container) {
-    // Убираем сообщение "нет изображений"
-    const noResults = container.querySelector('.no-results');
-    if (noResults) {
-        noResults.style.display = 'none';
-    }
-    
-    // Добавляем демо изображения из локальной папки
-    const demoImages = [
-        {
-            name: 'Русская изба',
-            url: 'images/izba.jpg',
-            description: 'Традиционное деревянное жилище'
-        },
-        {
-            name: 'Монгольская юрта',
-            url: 'images/yurta.jpg',
-            description: 'Переносное жилище кочевников'
-        },
-        {
-            name: 'Эскимосское иглу',
-            url: 'images/iglu.jpg',
-            description: 'Снежный дом из ледяных блоков'
-        },
-        {
-            name: 'Японская минка',
-            url: 'images/minka.jpg',
-            description: 'Традиционный японский дом'
-        },
-        {
-            name: 'Чукотская яранга',
-            url: 'images/yaranga.jpg',
-            description: 'Жилище народов Чукотки'
-        },
-        {
-            name: 'Индейский вигвам',
-            url: 'images/vigvam.jpg',
-            description: 'Жилище лесных индейцев'
-        }
-    ];
-    
-    demoImages.forEach((img, index) => {
-        setTimeout(() => {
-            const galleryItem = createGalleryItem(img);
-            container.appendChild(galleryItem);
-            galleryItem.style.animation = 'fadeIn 0.5s ease';
-        }, index * 100);
-    });
-}
-
-function createGalleryItem(img) {
-    const galleryItem = document.createElement('div');
-    galleryItem.className = 'gallery-item';
-    galleryItem.innerHTML = `
-        <div class="gallery-image" style="background-image: url('${img.url}')"></div>
-        <div class="gallery-caption">
-            <h4>${img.name}</h4>
-            <p>${img.description}</p>
-            <small>Традиционное жилище</small>
-        </div>
-    `;
-    return galleryItem;
-}
-
-function addToGallery(imageSrc, fileName, container) {
-    const galleryItem = createGalleryItem({
-        name: fileName.split('.')[0],
-        url: imageSrc,
-        description: 'Загруженное пользователем изображение'
-    });
-    
-    container.insertBefore(galleryItem, container.firstChild);
-    showSuccessMessage('Изображение успешно добавлено в галерею!');
-}
-
-// 6. Детальная информация о жилищах
+// 10. Детальная информация о жилищах
 const dwellingDetails = {
     'Русская изба': `
         <div class="dwelling-detail">
@@ -706,7 +708,6 @@ const dwellingDetails = {
     `
 };
 
-// 7. Функция для показа детальной информации
 function showDwellingDetails(dwellingName) {
     const details = dwellingDetails[dwellingName];
     if (!details) {
@@ -749,124 +750,7 @@ function showDwellingDetails(dwellingName) {
     }
 }
 
-// 8. Модальное окно для изображений
-function initializeImageModal() {
-    const modal = document.createElement('div');
-    modal.className = 'image-modal';
-    modal.innerHTML = `
-        <span class="close-modal">&times;</span>
-        <div class="modal-content">
-            <img class="modal-image">
-        </div>
-    `;
-    document.body.appendChild(modal);
-    
-    const modalImg = modal.querySelector('.modal-image');
-    const closeBtn = modal.querySelector('.close-modal');
-    
-    document.addEventListener('click', function(e) {
-        const galleryItem = e.target.closest('.gallery-item');
-        const cardImage = e.target.closest('.card-image');
-        
-        if (galleryItem) {
-            const img = galleryItem.querySelector('.gallery-image');
-            if (img.style.backgroundImage) {
-                const imageUrl = img.style.backgroundImage
-                    .replace('url("', '')
-                    .replace('")', '');
-                modalImg.src = imageUrl;
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-    });
-    
-    closeBtn.addEventListener('click', function() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    });
-    
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
-}
-
-// 9. Прелоадер
-function initializePreloader() {
-    const preloader = document.createElement('div');
-    preloader.className = 'preloader';
-    preloader.innerHTML = `
-        <div class="spinner"></div>
-        <p style="margin-top: 20px; color: white; font-size: 1.2rem;">Загрузка "Жилища мира"...</p>
-        <p style="margin-top: 10px; color: rgba(255,255,255,0.8); font-size: 0.9rem;">
-            Изучаем традиционные жилища народов мира
-        </p>
-    `;
-    document.body.appendChild(preloader);
-    
-    Promise.all([
-        new Promise(resolve => {
-            if (document.readyState === 'complete') {
-                resolve();
-            } else {
-                window.addEventListener('load', resolve);
-            }
-        }),
-        new Promise(resolve => setTimeout(resolve, 1500))
-    ]).then(() => {
-        preloader.classList.add('fade-out');
-        setTimeout(() => {
-            preloader.style.display = 'none';
-            showSuccessMessage('Добро пожаловать в мир традиционных жилищ! 🏠');
-        }, 500);
-    });
-}
-
-// 10. Кнопка "Наверх"
-function initializeScrollTop() {
-    const scrollBtn = document.createElement('button');
-    scrollBtn.className = 'scroll-top';
-    scrollBtn.textContent = '↑';
-    scrollBtn.title = 'Наверх';
-    document.body.appendChild(scrollBtn);
-    
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            scrollBtn.style.display = 'block';
-        } else {
-            scrollBtn.style.display = 'none';
-        }
-    });
-    
-    scrollBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// 11. Навигация
-function initializeNavigation() {
-    const currentPage = window.location.pathname.split('/').pop();
-    const navLinks = document.querySelectorAll('nav a');
-    
-    navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        if (linkHref === currentPage || 
-            (currentPage === '' && linkHref === 'index.html') ||
-            (currentPage === 'index.html' && linkHref === 'index.html')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-}
-
-// 12. Утилитные функции
+// 11. Утилитные функции
 function showSuccessMessage(text) {
     const message = document.createElement('div');
     message.className = 'success-message';
@@ -916,63 +800,15 @@ function showErrorMessage(text) {
     }, 3000);
 }
 
-// 13. Функция для проверки атрибутов data-image
-function checkDataImageAttributes() {
-    console.log('🔍 Проверяем атрибуты data-image в карточках...');
-    const cards = document.querySelectorAll('.card');
-    cards.forEach((card, index) => {
-        const dataImage = card.getAttribute('data-image');
-        const title = card.querySelector('h3')?.textContent || 'Без названия';
-        console.log(`Карточка ${index + 1}: "${title}" - data-image="${dataImage}"`);
-        
-        // Проверяем, есть ли у карточки изображение
-        const cardImage = card.querySelector('.card-image');
-        if (cardImage && cardImage.style.backgroundImage) {
-            console.log(`   ✅ Изображение загружено`);
-        } else if (cardImage) {
-            console.log(`   ❌ Изображение НЕ загружено`);
-        }
-    });
-}
-
-// Обновляем инициализацию в конце файла:
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Инициализация проекта "Жилища мира"...');
-    
-    initializePreloader();
-    initializeBreadcrumbs();
-    initializeNavigation();
-    initializeSearch();
-    initializeFilters();
-    initializeGallery();
-    initializeImageModal();
-    initializeScrollTop();
-    preloadCardImages(); // ЗАГРУЖАЕМ ИЗОБРАЖЕНИЯ КАРТОЧЕК
-    
-    // Анимация для карточек
-    const cards = document.querySelectorAll('.card');
-    cards.forEach((card, index) => {
-        card.style.setProperty('--i', index);
-    });
-    
-    // Обработка кнопок "Подробнее"
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('btn') && e.target.textContent === 'Подробнее') {
-            const card = e.target.closest('.card');
-            if (card) {
-                const dwellingName = card.querySelector('h3').textContent;
-                showDwellingDetails(dwellingName);
-            }
-        }
-    });
-    
-    // Проверяем атрибуты после загрузки всех изображений
-    setTimeout(() => {
-        checkDataImageAttributes();
-    }, 2000);
-    
-    console.log('✅ "Жилища мира" успешно загружен!');
-});
+// 12. Добавляем стили для анимаций
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(100px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+`;
+document.head.appendChild(style);
 
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 document.addEventListener('DOMContentLoaded', function() {
@@ -983,10 +819,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavigation();
     initializeSearch();
     initializeFilters();
-    initializeGallery();
     initializeImageModal();
     initializeScrollTop();
-    preloadCardImages(); // ЗАГРУЖАЕМ ИЗОБРАЖЕНИЯ КАРТОЧЕК
+    preloadCardImages();
+    initThemeSwitcher();
     
     // Анимация для карточек
     const cards = document.querySelectorAll('.card');
@@ -1007,25 +843,3 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('✅ "Жилища мира" успешно загружен!');
 });
-
-// Добавляем стили для анимаций
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from { opacity: 0; transform: translateX(100px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-    
-    .ripple-effect {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.7);
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-    }
-    
-    @keyframes ripple {
-        to { transform: scale(4); opacity: 0; }
-    }
-`;
-document.head.appendChild(style);

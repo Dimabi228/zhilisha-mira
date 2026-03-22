@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Викторина - Жилища мира</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🎮 Викторина</h1>
+            <p>Проверьте свои знания о жилищах народов мира</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">🏠 Главная</a></li>
+                <li><a href="dwellings.html">🏡 Традиционные жилища</a></li>
+                <li><a href="north.html">❄️ Жилища Севера</a></li>
+                <li><a href="asia.html">🌏 Жилища Азии</a></li>
+                <li><a href="climate.html">🌤️ Климат и архитектура</a></li>
+                <li><a href="materials.html">🛠️ Конструкции и материалы</a></li>
+                <li><a href="dictionary.html">📚 Словарь терминов</a></li>
+                <li><a href="quiz.html" class="active">🎮 Викторина</a></li>
+                <li><a href="about.html">ℹ️ О проекте</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <a href="index.html">🏠 Главная</a> <span class="separator">›</span> <span>Викторина</span>
+        </div>
+    </div>
+
+    <main class="container">
+        <div id="quizContainer" class="hero" style="max-width: 800px; margin: 0 auto;">
+            <div id="quizIntro">
+                <h2>📖 Правила викторины</h2>
+                <p style="margin: 2rem 0;">Вам будет предложено 10 вопросов о традиционных жилищах народов мира. За каждый правильный ответ вы получаете 10 баллов.</p>
+                <ul style="text-align: left; max-width: 400px; margin: 0 auto 2rem auto;">
+                    <li>✅ 10 вопросов</li>
+                    <li>✅ По 10 баллов за ответ</li>
+                    <li>✅ Максимум 100 баллов</li>
+                    <li>✅ После ответа показывается правильный вариант</li>
+                </ul>
+                <button id="startQuizBtn" class="btn">Начать викторину 🎮</button>
+            </div>
+
+            <div id="quizQuestion" style="display: none;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 2rem;">
+                    <span id="questionCounter" style="font-size: 1.2rem; font-weight: bold;">Вопрос 1/10</span>
+                    <span id="scoreDisplay" style="font-size: 1.2rem; font-weight: bold; color: var(--accent-color);">Счет: 0</span>
+                </div>
+                <h3 id="questionText" style="margin-bottom: 2rem;">Загрузка...</h3>
+                <div id="answersContainer" style="display: grid; gap: 1rem;"></div>
+                <button id="nextQuestionBtn" class="btn" style="margin-top: 2rem; display: none;">Следующий вопрос →</button>
+            </div>
+
+            <div id="quizResult" style="display: none;">
+                <div id="resultIcon" style="font-size: 5rem; margin-bottom: 1rem;">🏆</div>
+                <h2 id="resultTitle">Ваш результат</h2>
+                <p id="resultScore" style="font-size: 2rem; font-weight: bold; margin: 1rem 0;"></p>
+                <p id="resultMessage"></p>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                    <button id="restartQuizBtn" class="btn">Пройти еще раз</button>
+                    <button id="shareResultBtn" class="btn" style="background: linear-gradient(135deg, #0088cc, #006699);">Поделиться 📤</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Сертификат -->
+        <div id="certificateModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center;">
+            <div style="background: white; padding: 3rem; border-radius: 20px; max-width: 500px; text-align: center;">
+                <div style="font-size: 4rem;">🎓</div>
+                <h2 style="color: var(--primary-color); margin: 1rem 0;">Сертификат</h2>
+                <p>Вы успешно прошли викторину "Жилища мира"!</p>
+                <p id="certificateScore" style="font-size: 1.5rem; font-weight: bold; margin: 1rem 0;"></p>
+                <button id="closeCertificateBtn" class="btn">Закрыть</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Индивидуальный проект "Жилища мира".</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
